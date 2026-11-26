@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The World in One Day - Thursday, 26 November 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1024px; height: 1024px; }
+  body { font-family: "Liberation Serif", "DejaVu Serif", Georgia, serif; background: #f6f1e3; color: #141414; padding: 5px 26px 5px 26px; }
+  .page { width: 972px; height: 1012px; display: flex; flex-direction: column; }
+  .topline { display: flex; justify-content: space-between; font-family: "Liberation Sans", Arial, sans-serif; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; border-bottom: 2px solid #141414; padding-bottom: 1px; }
+  .topline .red { color: #b3122a; }
+  .masthead { background: #131f44; color: #f6f1e3; display: flex; align-items: center; justify-content: space-between; padding: 3px 14px 3px 14px; margin-top: 2px; }
+  .masthead .titleblock { text-align: center; }
+  .masthead h1 { font-size: 34px; line-height: 1.0; font-weight: 900; letter-spacing: 0.5px; }
+  .masthead .dateline { font-family: "Liberation Sans", Arial, sans-serif; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: #f2c94c; margin-top: 1px; }
+  .masthead .tagline { font-size: 12px; font-style: italic; color: #c8cfe8; margin-top: 0; }
+  .calendar { flex: none; width: 74px; text-align: center; background: #f6f1e3; color: #131f44; border: 2px solid #f2c94c; padding: 3px 0 3px 0; }
+  .calendar .dow { font-family: "Liberation Sans", Arial, sans-serif; font-size: 10px; font-weight: bold; letter-spacing: 2px; background: #b3122a; color: #fff; padding: 1px 0; }
+  .calendar .day { font-family: "Liberation Sans", Arial, sans-serif; font-size: 22px; font-weight: 900; line-height: 1.05; }
+  .calendar .mon { font-family: "Liberation Sans", Arial, sans-serif; font-size: 10px; font-weight: bold; letter-spacing: 2px; }
+  .regionbar { display: flex; margin-top: 1px; font-family: "Liberation Sans", Arial, sans-serif; font-size: 9px; font-weight: bold; letter-spacing: 1px; color: #fff; text-align: center; }
+  .regionbar div { padding: 1px 0 1px 0; white-space: nowrap; }
+  .utcstrip { display: flex; border-bottom: 1px solid #141414; margin-top: 1px; padding-bottom: 1px; }
+  .utcstrip .utctitle { width: 92px; flex: none; font-family: "Liberation Sans", Arial, sans-serif; font-size: 8.5px; font-weight: bold; letter-spacing: 1px; color: #b3122a; line-height: 1.3; text-transform: uppercase; padding-top: 2px; }
+  .utcstrip .cell { flex: 1; text-align: center; border-left: 1px solid #b9b09a; padding: 0 2px; }
+  .utcstrip .cell b { display: block; font-family: "Liberation Sans", Arial, sans-serif; font-size: 12px; font-weight: 900; color: #131f44; }
+  .utcstrip .cell span { display: block; font-family: "Liberation Sans", Arial, sans-serif; font-size: 7.5px; line-height: 1.1; color: #444; margin-top: 1px; }
+  .leads { display: flex; gap: 12px; padding-top: 1px; }
+  .lead { flex: 1; min-width: 0; }
+  .lead.big { flex: 1.55; }
+  .badge { font-family: "Liberation Sans", Arial, sans-serif; font-size: 10px; font-weight: bold; letter-spacing: 1.4px; text-transform: uppercase; color: #fff; background: #b3122a; display: inline-block; padding: 2px 7px 2px 7px; margin-bottom: 2px; }
+  .badge.navy { background: #131f44; }
+  .badge.gold { background: #8a6d1e; color: #fff; }
+  .art { width: 100%; border: 1px solid #141414; background: #e9e2cc; overflow: hidden; }
+  .lead .art { height: 115px; }
+  .lead.big .art { height: 120px; }
+  .art svg { display: block; width: 100%; height: 100%; }
+  .cap { font-family: "Liberation Sans", Arial, sans-serif; font-size: 8px; letter-spacing: 0.8px; color: #555; margin-top: 1px; text-transform: uppercase; }
+  .kicker { font-family: "Liberation Sans", Arial, sans-serif; font-size: 10px; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; color: #b3122a; margin: 1px 0 1px 0; display: flex; justify-content: space-between; align-items: center; }
+  .kicker .num { display: inline-block; background: #b3122a; color: #fff; width: 15px; height: 15px; line-height: 15px; text-align: center; font-size: 10px; margin-right: 4px; vertical-align: 1px; }
+  .kicker .src { font-size: 8px; letter-spacing: 1px; color: #555; white-space: nowrap; }
+  .lead h2 { font-size: 18px; line-height: 1.08; font-weight: 900; }
+  .lead.big h2 { font-size: 26px; line-height: 1.04; }
+  .lead p { font-size: 10px; line-height: 1.2; color: #222; margin-top: 2px; }
+  .lead:not(.big) p { font-size: 9.5px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 12px; row-gap: 0; padding-top: 1px; }
+  .cell { border-top: 1px solid #141414; padding-top: 0; }
+  .cell .art { height: 66px; }
+  .cell .badge { font-size: 9px; padding: 1px 6px 1px 6px; margin-bottom: 1px; }
+  .cell .kicker { font-size: 9px; letter-spacing: 1px; margin: 2px 0 1px 0; }
+  .cell .kicker .num { width: 13px; height: 13px; line-height: 13px; font-size: 9px; }
+  .cell h3 { font-size: 13px; line-height: 1.12; font-weight: 900; min-height: 28px; }
+  .cell p { font-size: 9px; line-height: 1.15; color: #222; margin-top: 2px; min-height: 20px; }
+  .pill { display: inline-block; font-family: "Liberation Sans", Arial, sans-serif; font-size: 8px; font-weight: 900; letter-spacing: 0.8px; color: #b3122a; border: 1px solid #b3122a; border-radius: 9px; padding: 0 6px 0 6px; margin-top: 1px; }
+  .mapband { display: flex; gap: 14px; border-top: 3px solid #141414; margin-top: 2px; padding-top: 2px; flex: 1; min-height: 0; }
+  .mapcol { width: 272px; flex: none; background: #131f44; padding: 4px; display: flex; flex-direction: column; justify-content: space-between; }
+  .sectitle { font-family: "Liberation Sans", Arial, sans-serif; font-size: 11px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 3px; }
+  .sectitle span { color: #b3122a; }
+  .mapcol .sectitle { color: #f6f1e3; margin-bottom: 4px; }
+  .mapcol .sectitle span { color: #f2c94c; }
+  .mapcol svg { display: block; border: 1px solid #0a1128; width: 262px; height: 110px; flex-shrink: 0; }
+  .mapcap { font-family: "Liberation Sans", Arial, sans-serif; font-size: 8px; letter-spacing: 1px; color: #c8cfe8; margin-top: 3px; line-height: 1.3; }
+  .briefs { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  .briefs .cols { display: flex; gap: 16px; flex: 1; }
+  .briefs .col { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+  .briefs .item { font-family: "Liberation Sans", Arial, sans-serif; font-size: 8px; line-height: 1.05; color: #222; }
+  .briefs .item b { color: #b3122a; }
+  .briefs .item .place { font-weight: bold; }
+  .datecheck { border: 1.5px solid #b3122a; padding: 2px 12px 2px 12px; background: #fbf7ea; margin-top: 2px; font-family: "Liberation Sans", Arial, sans-serif; font-size: 8.5px; line-height: 1.25; color: #222; }
+  .datecheck b { color: #b3122a; }
+  .datecheck .dctitle { font-weight: bold; letter-spacing: 1.8px; color: #b3122a; text-transform: uppercase; font-size: 10px; margin-right: 6px; }
+  .footer { margin-top: 2px; border-top: 1px solid #141414; padding-top: 1px; font-family: "Liberation Sans", Arial, sans-serif; font-size: 9px; line-height: 1.2; color: #333; }
+  .footer .line1 { font-size: 9.5px; }
+  .footer .line2 { color: #555; margin-top: 1px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topline"><span class="red">The World&rsquo;s News in One Picture</span><span>35 Stories &middot; Six Regions &middot; One Day</span></div>
+  <div class="masthead">
+    <div class="titleblock">
+      <h1>THE WORLD IN ONE DAY</h1>
+      <div class="dateline">Thursday 26 November 2026</div>
+      <div class="tagline">A tanker burns in Cairo, a crater spans an asteroid, and the balloons stay grounded.</div>
+    </div>
+    <div class="calendar"><div class="dow">THU</div><div class="day">26</div><div class="mon">NOV 2026</div></div>
+  </div>
+  <div class="regionbar"><div style="flex:10;background:#7a3b2e">AMERICAS 11</div><div style="flex:9;background:#2e5a88">EUROPE 9</div><div style="flex:7;background:#b3122a">ASIA 7</div><div style="flex:4;background:#2e7a6b">GLOBAL 4</div><div style="flex:3;background:#8a6d1e">MIDEAST 3</div><div style="flex:2;background:#3a6b35">AFRICA 1</div></div>
+  <div class="utcstrip">
+    <div class="utctitle">The day in WIB</div>
+    <div class="cell"><b>00:30</b><span>Hera crater revealed</span></div>
+    <div class="cell"><b>03:15</b><span>Cairo tanker fire</span></div>
+    <div class="cell"><b>04:53</b><span>Macy&rsquo;s parade delayed</span></div>
+    <div class="cell"><b>06:13</b><span>Jolie-Pitt settle</span></div>
+    <div class="cell"><b>08:00</b><span>BoK hikes to 3.25%</span></div>
+    <div class="cell"><b>09:45</b><span>Asia shares bounce</span></div>
+    <div class="cell"><b>11:08</b><span>Seasons shifting</span></div>
+    <div class="cell"><b>13:15</b><span>Hundred semi-finals</span></div>
+  </div>
+
+  <div class="leads">
+    <div class="lead big">
+      <div class="badge">Lead 1, Africa, Disaster, 31 killed</div>
+      <div class="art"><svg viewBox="0 0 440 150" preserveAspectRatio="xMidYMid slice"><rect width="440" height="150" fill="#1a0d08"/><rect y="0" width="440" height="60" fill="#2b1408"/><g fill="#3a3a3a" opacity="0.9"><ellipse cx="70" cy="18" rx="46" ry="12"/><ellipse cx="180" cy="10" rx="60" ry="14"/><ellipse cx="300" cy="20" rx="52" ry="12"/><ellipse cx="390" cy="12" rx="44" ry="11"/></g><g><path d="M0 150 L0 78 Q22 40 48 66 Q66 30 92 62 Q112 26 140 64 Q164 34 190 66 Q214 28 244 64 Q268 32 296 66 Q322 30 350 64 Q376 34 402 66 Q424 40 440 70 L440 150 Z" fill="#e85d04"/><path d="M0 150 L0 100 Q30 66 60 96 Q88 62 118 96 Q146 66 178 98 Q208 68 240 98 Q270 66 302 98 Q332 68 364 98 Q394 70 420 96 Q432 86 440 94 L440 150 Z" fill="#f48c06"/><path d="M0 150 L0 122 Q40 96 80 122 Q120 98 160 122 Q200 100 240 122 Q280 100 320 122 Q360 102 400 122 Q424 110 440 120 L440 150 Z" fill="#faa307"/></g><g fill="#141414"><rect x="30" y="118" width="46" height="16" rx="3"/><rect x="120" y="122" width="52" height="14" rx="3"/><rect x="250" y="116" width="48" height="16" rx="3"/><rect x="340" y="122" width="52" height="14" rx="3"/></g><g fill="#e05252"><circle cx="34" cy="118" r="3"/><circle cx="72" cy="118" r="3"/><circle cx="124" cy="122" r="3"/><circle cx="168" cy="122" r="3"/><circle cx="254" cy="116" r="3"/><circle cx="294" cy="116" r="3"/><circle cx="344" cy="122" r="3"/><circle cx="388" cy="122" r="3"/></g><rect x="0" y="136" width="440" height="14" fill="#0d0d0d"/><g stroke="#f2c94c" stroke-width="2" stroke-dasharray="10 8"><line x1="10" y1="137" x2="430" y2="137"/></g><rect x="14" y="10" width="150" height="22" fill="#b3122a" stroke="#141414" stroke-width="1"/><text x="89" y="26" font-family="Liberation Sans, Arial" font-size="13" font-weight="900" fill="#ffffff" text-anchor="middle">31 KILLED, 21 HURT</text><text x="424" y="136" font-family="Liberation Sans, Arial" font-size="8" font-weight="bold" fill="#f6f1e3" text-anchor="end">RING ROAD, CAIRO</text></svg></div>
+      <div class="cap">Flames engulf cars on Cairo&rsquo;s Ring Road after the tanker crash</div>
+      <div class="kicker"><span><span class="num">1</span>Cairo 03:15 WIB, Fire</span><span class="src">AP / CNN / BBC</span></div>
+      <h2>Cairo fuel tanker fire kills 31</h2>
+      <p>A tanker crashed and exploded on Cairo&rsquo;s Ring Road, engulfing cars in flames. At least 31 killed and 21 injured; 39 ambulances raced to the scene.</p>
+    </div>
+    <div class="lead">
+      <div class="badge navy">Lead 2, Global, Space, 151 m wide</div>
+      <div class="art"><svg viewBox="0 0 300 150" preserveAspectRatio="xMidYMid slice"><rect width="300" height="150" fill="#0a0f1e"/><g fill="#ffffff"><circle cx="20" cy="14" r="1.2"/><circle cx="70" cy="8" r="1"/><circle cx="130" cy="16" r="1.2"/><circle cx="200" cy="10" r="1"/><circle cx="260" cy="14" r="1.2"/><circle cx="290" cy="30" r="1"/><circle cx="40" cy="34" r="1"/><circle cx="160" cy="28" r="1"/></g><text x="66" y="20" font-family="Liberation Sans, Arial" font-size="10" font-weight="900" fill="#f2c94c" text-anchor="middle">BEFORE</text><circle cx="66" cy="76" r="42" fill="#8d99ae"/><circle cx="56" cy="66" r="9" fill="#6c7a89"/><circle cx="80" cy="84" r="7" fill="#6c7a89"/><circle cx="70" cy="58" r="5" fill="#7a8794"/><circle cx="52" cy="88" r="6" fill="#7a8794"/><text x="234" y="20" font-family="Liberation Sans, Arial" font-size="10" font-weight="900" fill="#f2c94c" text-anchor="middle">AFTER</text><path d="M196 48 Q234 34 272 50 Q286 76 268 104 Q236 118 204 102 Q190 74 196 48 Z" fill="#8d99ae"/><ellipse cx="234" cy="76" rx="26" ry="18" fill="#5c6770"/><ellipse cx="234" cy="76" rx="16" ry="10" fill="#3d454e"/><circle cx="286" cy="52" r="4" fill="#6c7a89"/><circle cx="292" cy="92" r="3" fill="#6c7a89"/><circle cx="204" cy="112" r="3" fill="#6c7a89"/><circle cx="276" cy="112" r="4" fill="#6c7a89"/><g stroke="#f2c94c" stroke-width="1.5"><line x1="150" y1="30" x2="150" y2="122"/></g><polygon points="150,30 146,38 154,38" fill="#f2c94c"/><text x="150" y="139" font-family="Liberation Sans, Arial" font-size="8" font-weight="bold" fill="#ffffff" text-anchor="middle">DART HIT 26 SEP 2022</text><text x="66" y="136" font-family="Liberation Sans, Arial" font-size="8" font-weight="bold" fill="#c8cfe8" text-anchor="middle">ROUND FACE</text><text x="238" y="136" font-family="Liberation Sans, Arial" font-size="7.5" font-weight="bold" fill="#c8cfe8" text-anchor="middle">CRATER SPANS IT</text></svg></div>
+      <div class="cap">Dimorphos before and after the DART impact, seen by ESA&rsquo;s Hera</div>
+      <div class="kicker"><span><span class="num">2</span>Space 00:30 WIB, Science</span><span class="src">ESA / REUTERS</span></div>
+      <h2>Hera reveals stadium-sized Dimorphos crater</h2>
+      <p>ESA&rsquo;s Hera sent back the first close images since NASA&rsquo;s DART hit. The asteroid&rsquo;s face is flattened into a crater spanning its whole side.</p>
+    </div>
+    <div class="lead">
+      <div class="badge gold">Lead 3, Americas, Weather</div>
+      <div class="art"><svg viewBox="0 0 300 150" preserveAspectRatio="xMidYMid slice"><rect width="300" height="150" fill="#5a6b7d"/><g fill="#8a9aa8"><rect x="8" y="70" width="26" height="80"/><rect x="40" y="52" width="30" height="98"/><rect x="76" y="80" width="22" height="70"/><rect x="104" y="44" width="28" height="106"/><rect x="138" y="66" width="24" height="84"/><rect x="168" y="58" width="30" height="92"/><rect x="204" y="76" width="22" height="74"/><rect x="232" y="48" width="28" height="102"/><rect x="266" y="70" width="26" height="80"/></g><g stroke="#c8d4de" stroke-width="1.6" opacity="0.8"><line x1="30" y1="8" x2="22" y2="26"/><line x1="70" y1="6" x2="62" y2="24"/><line x1="110" y1="10" x2="102" y2="28"/><line x1="150" y1="6" x2="142" y2="24"/><line x1="190" y1="10" x2="182" y2="28"/><line x1="230" y1="6" x2="222" y2="24"/><line x1="270" y1="10" x2="262" y2="28"/></g><ellipse cx="80" cy="128" rx="52" ry="16" fill="#e05252" opacity="0.85"/><ellipse cx="210" cy="130" rx="46" ry="14" fill="#f2c94c" opacity="0.85"/><ellipse cx="150" cy="138" rx="40" ry="10" fill="#2e5a88" opacity="0.85"/><g fill="#141414"><circle cx="60" cy="126" r="3"/><circle cx="100" cy="130" r="3"/><circle cx="190" cy="128" r="3"/><circle cx="230" cy="132" r="3"/></g><rect x="8" y="10" width="170" height="20" fill="#131f44" stroke="#141414" stroke-width="1"/><text x="93" y="25" font-family="Liberation Sans, Arial" font-size="11" font-weight="900" fill="#ffffff" text-anchor="middle">BALLOONS GROUNDED</text><rect x="182" y="10" width="110" height="20" fill="#ffffff" stroke="#141414" stroke-width="1"/><text x="237" y="25" font-family="Liberation Sans, Arial" font-size="11" font-weight="900" fill="#141414" text-anchor="middle">GUSTS 65 MPH</text><text x="150" y="138" font-family="Liberation Sans, Arial" font-size="8" font-weight="bold" fill="#f6f1e3" text-anchor="middle">MANHATTAN, IN A NOR&rsquo;EASTER</text></svg></div>
+      <div class="cap">Giant balloons deflated on the ground as the storm hits New York</div>
+      <div class="kicker"><span><span class="num">3</span>New York 04:53 WIB, Parade</span><span class="src">REUTERS / AP</span></div>
+      <h2>Macy&rsquo;s parade postponed, first time ever</h2>
+      <p>A nor&rsquo;easter forced Macy&rsquo;s to move its Thanksgiving parade to Saturday, the first postponement in 100 years. Winds hit 30 to 40 mph, gusts to 65.</p>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="cell">
+      <div class="badge">Grid, Markets</div>
+      <div class="art"><svg viewBox="0 0 220 80" preserveAspectRatio="xMidYMid slice"><rect width="220" height="80" fill="#131f44"/><g stroke="#2e4a7a"><line x1="0" y1="20" x2="220" y2="20"/><line x1="0" y1="40" x2="220" y2="40"/><line x1="0" y1="60" x2="220" y2="60"/></g><polyline points="8,14 50,20 90,30 130,44 170,56 212,68" fill="none" stroke="#e05252" stroke-width="3.5"/><polyline points="8,30 60,36 110,48 160,58 212,70" fill="none" stroke="#fad03f" stroke-width="2.5"/><text x="8" y="70" font-family="Liberation Sans, Arial" font-size="8" font-weight="bold" fill="#ffffff">S&amp;P -2.5%, DOW -872</text><rect x="8" y="6" width="92" height="20" fill="#b3122a" stroke="#141414" stroke-width="1"/><text x="54" y="21" font-family="Liberation Sans, Arial" font-size="12" font-weight="900" fill="#ffffff" text-anchor="middle">NASDAQ -2.5%</text></svg></div>
+      <div class="cap">Wall Street falls again overnight</div>
+      <div class="kicker"><span><span class="num">4</span>New York, Economy</span><span class="src">BBC</span></div>
+      <h3>US stocks fall further as AI fears grow</h3>
+      <p>Wall Street fell again as the AI sell-off deepened. Nvidia dropped 5% in Wednesday trading.</p>
+      <span class="pill">NASDAQ -2.5% CLOSE</span>
+    </div>
+    <div class="cell">
+      <div class="badge navy">Grid, Music</div>
+      <div class="art"><svg viewBox="0 0 220 80" preserveAspectRatio="xMidYMid slice"><rect width="220" height="80" fill="#2b1a1a"/><rect x="0" y="58" width="220" height="22" fill="#141414"/><circle cx="110" cy="26" r="16" fill="#f2c94c"/><rect x="102" y="26" width="16" height="34" fill="#8a5a2b" transform="rotate(28 110 26)"/><rect x="86" y="40" width="10" height="22" fill="#c8a86a" transform="rotate(-18 86 40)"/><circle cx="110" cy="26" r="6" fill="#2b1a1a"/><g stroke="#ffffff" stroke-width="1.4" opacity="0.8"><line x1="20" y1="20" x2="34" y2="34"/><line x1="200" y1="16" x2="186" y2="30"/><line x1="40" y1="50" x2="52" y2="60"/></g><text x="110" y="70" font-family="Liberation Sans, Arial" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">DURAN DURAN CO-FOUNDER</text></svg></div>
+      <div class="cap">The band announced his death overnight</div>
+      <div class="kicker"><span><span class="num">5</span>London, Obituary</span><span class="src">REUTERS</span></div>
+      <h3>Duran Duran guitarist Andy Taylor dies, 65</h3>
+      <p>The band said Taylor died on Monday after prostate cancer. The announcement came overnight.</p>
+      <span class="pill">AGED 65</span>
+    </div>
+    <div class="cell">
+      <div class="badge">Grid, Law</div>
+      <div class="art"><svg viewBox="0 0 220 80" preserveAspectRatio="xMidYMid slice"><rect width="220" height="80" fill="#3a5a2e"/><rect x="0" y="52" width="220" height="28" fill="#2b4423"/><g fill="#6b8e4e"><ellipse cx="60" cy="44" rx="34" ry="10"/><ellipse cx="150" cy="40" rx="40" ry="12"/></g><rect x="96" y="18" width="26" height="40" fill="#1a2a12"/><rect x="102" y="8" width="14" height="12" fill="#c8a86a"/><rect x="92" y="58" width="34" height="6" fill="#c8a86a"/><text x="110" y="69" font-family="Liberation Sans, Arial" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">CHATEAU MIRAVAL, FRANCE</text><rect x="150" y="8" width="62" height="18" fill="#f2c94c" stroke="#141414" stroke-width="1"/><text x="181" y="21" font-family="Liberation Sans, Arial" font-size="10" font-weight="900" fill="#141414" text-anchor="middle">SETTLED</text></svg></div>
+      <div class="cap">Four years of fighting over the winery ends</div>
+      <div class="kicker"><span><span class="num">6</span>Los Angeles, Court</span><span class="src">AP</span></div>
+      <h3>Jolie-Pitt settle winery lawsuit</h3>
+      <p>Pitt and Jolie settled their four-year Chateau Miraval fight out of court. Terms undisclosed.</p>
+      <span class="pill">4-YEAR FIGHT ENDS</span>
+    </div>
+    <div class="cell">
+      <div class="badge navy">Grid, Sport</div>
+      <div class="art"><svg viewBox="0 0 220 80" preserveAspectRatio="xMidYMid slice"><rect width="220" height="80" fill="#2e5a2e"/><g stroke="#ffffff" stroke-width="1.5" opacity="0.7"><line x1="0" y1="20" x2="220" y2="20"/><line x1="0" y1="40" x2="220" y2="40"/><line x1="0" y1="60" x2="220" y2="60"/><line x1="40" y1="0" x2="40" y2="80"/><line x1="110" y1="0" x2="110" y2="80"/><line x1="180" y1="0" x2="180" y2="80"/></g><rect x="86" y="14" width="48" height="52" rx="6" fill="#141414" stroke="#f2c94c" stroke-width="2"/><text x="110" y="48" font-family="Liberation Sans, Arial" font-size="26" font-weight="900" fill="#ffffff" text-anchor="middle">8</text><text x="110" y="62" font-family="Liberation Sans, Arial" font-size="8" font-weight="bold" fill="#f2c94c" text-anchor="middle">RODGERS</text><ellipse cx="110" cy="72" rx="16" ry="5" fill="#7a4a21" stroke="#ffffff" stroke-width="1"/><text x="8" y="15" font-family="Liberation Sans, Arial" font-size="9" font-weight="bold" fill="#ffffff">STEELERS CUT THE 4-TIME MVP</text></svg></div>
+      <div class="cap">Released hours after torching his coach on TV</div>
+      <div class="kicker"><span><span class="num">7</span>Pittsburgh, NFL</span><span class="src">STEELERS / CNN</span></div>
+      <h3>Steelers release Aaron Rodgers</h3>
+      <p>Hours after accusing his coach of sleeping in meetings, the MVP was cut. Rudolph starts Friday.</p>
+      <span class="pill">10 STARTS IN 2026</span>
+    </div>
+    <div class="cell">
+      <div class="badge">Grid, Europe</div>
+      <div class="art"><svg viewBox="0 0 220 80" preserveAspectRatio="xMidYMid slice"><rect width="220" height="80" fill="#1d4e6e"/><rect y="48" width="220" height="32" fill="#14405e"/><path d="M0 56 Q30 48 60 56 Q90 64 120 56 Q150 48 180 56 Q200 60 220 56 L220 80 L0 80 Z" fill="#2e6a8a"/><path d="M60 48 L130 48 L118 62 L72 62 Z" fill="#f6f1e3"/><rect x="88" y="30" width="6" height="20" fill="#141414"/><rect x="118" y="34" width="5" height="16" fill="#141414"/><text x="110" y="69" font-family="Liberation Sans, Arial" font-size="8" font-weight="bold" fill="#ffffff" text-anchor="middle">THE CHANNEL, EARLY 2026</text><rect x="8" y="8" width="96" height="18" fill="#b3122a" stroke="#141414" stroke-width="1"/><text x="56" y="21" font-size="10" font-weight="900" fill="#ffffff" text-anchor="middle">1 IN 3 CROSSINGS</text></svg></div>
+      <div class="cap">A BBC investigation traces the boats</div>
+      <div class="kicker"><span><span class="num">8</span>Germany, Smuggling</span><span class="src">BBC</span></div>
+      <h3>German boat dealer linked to Channel gangs</h3>
+      <p>One firm&rsquo;s boats or engines were in nearly a third of crossings. Its boss fights extradition.</p>
+      <span class="pill">NEARLY 1 IN 3</span>
+    </div>
+    <div class="cell">
+      <div class="badge navy">Grid, Media</div>
+      <div class="art"><svg viewBox="0 0 220 80" preserveAspectRatio="xMidYMid slice"><rect width="220" height="80" fill="#f6f1e3"/><rect x="26" y="10" width="168" height="44" fill="#131f44" stroke="#141414" stroke-width="2"/><text x="110" y="32" font-family="Liberation Sans, Arial" font-size="16" font-weight="900" fill="#ffffff" text-anchor="middle">ABC</text><text x="110" y="48" font-family="Liberation Sans, Arial" font-size="8" font-weight="bold" fill="#f2c94c" text-anchor="middle">8 STATION LICENCES</text><rect x="96" y="54" width="28" height="8" fill="#141414"/><rect x="80" y="62" width="60" height="5" fill="#141414"/><g stroke="#b3122a" stroke-width="3"><line x1="180" y1="12" x2="204" y2="44"/><line x1="204" y1="12" x2="180" y2="44"/></g><circle cx="192" cy="28" r="17" fill="none" stroke="#b3122a" stroke-width="3"/><text x="14" y="69" font-family="Liberation Sans, Arial" font-size="8" font-weight="bold" fill="#141414">JUDGE: LIKELY RETALIATION</text></svg></div>
+      <div class="cap">Fast-track review barred by a federal judge</div>
+      <div class="kicker"><span><span class="num">9</span>Washington, Courts</span><span class="src">CNN</span></div>
+      <h3>Judge blocks FCC review of ABC licences</h3>
+      <p>A judge barred the FCC fast-track review of ABC&rsquo;s eight licences as likely retaliation.</p>
+      <span class="pill">8 LICENCES</span>
+    </div>
+    <div class="cell">
+      <div class="badge">Grid, Economy</div>
+      <div class="art"><svg viewBox="0 0 220 80" preserveAspectRatio="xMidYMid slice"><rect width="220" height="80" fill="#e8eef7"/><polyline points="10,66 60,56 110,38 160,26 210,10" fill="none" stroke="#2e5a88" stroke-width="3"/><polygon points="210,10 198,12 206,22" fill="#2e5a88"/><g fill="#2e5a88"><rect x="30" y="58" width="8" height="12"/><rect x="80" y="44" width="8" height="26"/><rect x="130" y="28" width="8" height="42"/><rect x="180" y="14" width="8" height="56"/></g><text x="10" y="69" font-family="Liberation Sans, Arial" font-size="8" font-weight="bold" fill="#141414">AI CHIP BOOM LIFTS GROWTH</text><rect x="120" y="6" width="92" height="20" fill="#131f44" stroke="#141414" stroke-width="1"/><text x="166" y="21" font-family="Liberation Sans, Arial" font-size="12" font-weight="900" fill="#ffffff" text-anchor="middle">3.25%</text></svg></div>
+      <div class="cap">Seoul resumes tightening as inflation rises</div>
+      <div class="kicker"><span><span class="num">10</span>Seoul, Rates</span><span class="src">REUTERS</span></div>
+      <h3>Bank of Korea hikes rates to 3.25%</h3>
+      <p>South Korea raised its base rate a quarter point as the AI chip boom lifts growth and prices.</p>
+      <span class="pill">UP 0.25 POINTS</span>
+    </div>
+    <div class="cell">
+      <div class="badge navy">Grid, Space</div>
+      <div class="art"><svg viewBox="0 0 220 80" preserveAspectRatio="xMidYMid slice"><rect width="220" height="80" fill="#0a0f1e"/><g fill="#ffffff"><circle cx="20" cy="12" r="1.2"/><circle cx="70" cy="8" r="1"/><circle cx="150" cy="12" r="1.2"/><circle cx="200" cy="8" r="1"/></g><path d="M100 62 L110 30 L116 30 L126 62 L118 62 L114 48 L112 62 Z" fill="#f6f1e3"/><polygon points="110,30 116,30 113,18" fill="#e05252"/><polygon points="100,62 92,70 102,66" fill="#e05252"/><polygon points="126,62 134,70 124,66" fill="#e05252"/><ellipse cx="113" cy="66" rx="8" ry="4" fill="#f48c06"/><ellipse cx="113" cy="72" rx="5" ry="3" fill="#faa307"/><circle cx="180" cy="24" r="14" fill="#2e7a6b"/><circle cx="186" cy="20" r="3" fill="#1d4e3a"/><text x="10" y="69" font-family="Liberation Sans, Arial" font-size="8" font-weight="bold" fill="#ffffff">ONE SHARE FROM MUSK, ONE FROM SPACEX</text><rect x="140" y="8" width="72" height="18" fill="#f2c94c" stroke="#141414" stroke-width="1"/><text x="176" y="21" font-family="Liberation Sans, Arial" font-size="10" font-weight="900" fill="#141414" text-anchor="middle">$18BN GIFT</text></svg></div>
+      <div class="cap">Every American child gets two shares, he says</div>
+      <div class="kicker"><span><span class="num">11</span>Texas, Business</span><span class="src">REUTERS</span></div>
+      <h3>Musk pledges two SpaceX shares per US child</h3>
+      <p>Musk says every American child gets two SpaceX shares, one from him, one from the company.</p>
+      <span class="pill">WORTH ABOUT $18BN</span>
+    </div>
+  </div>
+
+  <div class="mapband">
+    <div class="mapcol">
+      <div class="sectitle">Where it <span>happened</span></div>
+      <svg viewBox="0 0 370 120"><rect width="370" height="120" fill="#131f44"/><g fill="#3a5a94" stroke="#6a86b8" stroke-width="0.6"><path d="M18 18 L118 14 L128 30 L104 44 L112 58 L88 62 L78 48 L40 52 L22 40 Z"/><path d="M128 8 L150 6 L152 16 L132 18 Z"/><path d="M96 66 L124 64 L132 84 L118 108 L104 96 L94 78 Z"/><path d="M182 14 L214 12 L220 26 L204 34 L186 30 Z"/><path d="M186 40 L222 38 L238 52 L230 78 L212 92 L196 76 L184 58 Z"/><path d="M222 12 L352 10 L360 30 L340 44 L330 58 L300 52 L280 60 L260 44 L240 40 L224 26 Z"/><path d="M296 76 L338 74 L344 88 L322 96 L300 88 Z"/></g><g font-family="Liberation Sans, Arial" font-size="8" font-weight="bold" text-anchor="middle"><circle cx="216" cy="42" r="6.5" fill="#b3122a" stroke="#f6f1e3" stroke-width="1"/><text x="216" y="45" fill="#ffffff">1</text><circle cx="350" cy="12" r="6.5" fill="#b3122a" stroke="#f6f1e3" stroke-width="1"/><text x="350" y="15" fill="#ffffff">2</text><circle cx="108" cy="28" r="6.5" fill="#b3122a" stroke="#f6f1e3" stroke-width="1"/><text x="108" y="31" fill="#ffffff">3</text><circle cx="118" cy="40" r="6.5" fill="#b3122a" stroke="#f6f1e3" stroke-width="1"/><text x="118" y="43" fill="#ffffff">4</text><circle cx="186" cy="22" r="6.5" fill="#b3122a" stroke="#f6f1e3" stroke-width="1"/><text x="186" y="25" fill="#ffffff">5</text><circle cx="62" cy="38" r="6.5" fill="#b3122a" stroke="#f6f1e3" stroke-width="1"/><text x="62" y="41" fill="#ffffff">6</text><circle cx="96" cy="36" r="6.5" fill="#b3122a" stroke="#f6f1e3" stroke-width="1"/><text x="96" y="39" fill="#ffffff">7</text><circle cx="194" cy="31" r="6.5" fill="#b3122a" stroke="#f6f1e3" stroke-width="1"/><text x="194" y="34" fill="#ffffff">8</text><circle cx="104" cy="46" r="6.5" fill="#b3122a" stroke="#f6f1e3" stroke-width="1"/><text x="104" y="49" fill="#ffffff">9</text><circle cx="318" cy="34" r="6.5" fill="#b3122a" stroke="#f6f1e3" stroke-width="1"/><text x="318" y="37" fill="#ffffff">10</text><circle cx="84" cy="48" r="6.5" fill="#b3122a" stroke="#f6f1e3" stroke-width="1"/><text x="84" y="51" fill="#ffffff">11</text></g></svg>
+      <div class="mapcap">RED NUMBERS MARK STORIES 1-11. POSITIONS APPROXIMATE. STORY 2 IS IN ORBIT.</div>
+    </div>
+    <div class="briefs">
+      <div class="sectitle">Also on Thursday 26 November, <span>24 more stories</span></div>
+      <div class="cols">
+        <div class="col">
+          <div class="item"><b>12</b> <span class="place">MUMBAI,</span> India marks 18 years since the 26/11 attacks (2008).</div>
+          <div class="item"><b>13</b> <span class="place">NEW DELHI,</span> India observes Constitution Day, adopted 1949.</div>
+          <div class="item"><b>14</b> <span class="place">WASHINGTON,</span> Thanksgiving Day in the US, travel and turkey prices dominate.</div>
+          <div class="item"><b>15</b> <span class="place">HANOI,</span> Vietnam hosts trade ministers, hours after new tariffs.</div>
+          <div class="item"><b>16</b> <span class="place">JAKARTA,</span> Indonesia mine rescue resumes, 13 trapped, 13 dead.</div>
+          <div class="item"><b>17</b> <span class="place">PHILADELPHIA,</span> Oldest US parade canceled as the storm hits.</div>
+          <div class="item"><b>18</b> <span class="place">TEHRAN,</span> Iran rejects Katz claim on chemical weapons.</div>
+          <div class="item"><b>19</b> <span class="place">JEDDAH,</span> Houthis strike Jeddah and Jazan ports, Jizan hit.</div>
+        </div>
+        <div class="col">
+          <div class="item"><b>20</b> <span class="place">DALLAS,</span> Thanksgiving flights: 4,500 delayed, 63 canceled.</div>
+          <div class="item"><b>21</b> <span class="place">TRENTON,</span> New Jersey declares a state of emergency.</div>
+          <div class="item"><b>22</b> <span class="place">WASHINGTON,</span> FCC clears SpaceX Starmind, 1m AI satellites.</div>
+          <div class="item"><b>23</b> <span class="place">MIAMI,</span> FedEx MD-11 overruns the runway, no injuries.</div>
+          <div class="item"><b>24</b> <span class="place">LONDON,</span> Oil rises, Brent $94.71, WTI $84.03 a barrel.</div>
+          <div class="item"><b>25</b> <span class="place">LONDON,</span> BBC: has global jihadism failed, or changed shape?</div>
+          <div class="item"><b>26</b> <span class="place">LONDON,</span> UK and EU publish treaties, 10-year exit clause.</div>
+          <div class="item"><b>27</b> <span class="place">TOKYO,</span> Asia shares bounce, Nikkei up 1.6%, Kospi up 1.9%.</div>
+        </div>
+        <div class="col">
+          <div class="item"><b>28</b> <span class="place">BEIJING,</span> US chip curbs slow China&rsquo;s AI race, Reuters finds.</div>
+          <div class="item"><b>29</b> <span class="place">GAZA,</span> Meningitis cases surge, 272 in October, ministry says.</div>
+          <div class="item"><b>30</b> <span class="place">SAN JUAN,</span> Court cancels Luma power contract, 5 to 4.</div>
+          <div class="item"><b>31</b> <span class="place">LONDON,</span> The Hundred adds semi-finals from 2027.</div>
+          <div class="item"><b>32</b> <span class="place">LONDON,</span> Met Office: UK seasons shifting, fewer frosts.</div>
+          <div class="item"><b>33</b> <span class="place">LONDON,</span> Child homelessness doubles chance of being NEET.</div>
+          <div class="item"><b>34</b> <span class="place">LONDON,</span> UK doubles social-media unit spending to &pound;25m.</div>
+          <div class="item"><b>35</b> <span class="place">EDINBURGH,</span> ADHD and autism waits &ldquo;a tragedy&rdquo; in Scotland.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="datecheck"><span class="dctitle">Date check</span> Left out, first reported <b>Wednesday 25 November</b>, so <b>not</b> Thursday news: Houthi claim on Ras Tanura refinery (10:29 UTC), Netanyahu hearing on dropping Case 4000, Colombia supermarket hostage rescue (06:30 UTC), US tariffs on 14 partners (morning), Poundland collapses into administration (15:46 GMT, 11,000 jobs at risk), Syria ISIL attack (hour unpinned). <b>Not yet news:</b> US PCE inflation and Q3 GDP, due 20:30 WIB; Gukesh vs Sindarov Game 3, starts 21:00 WIB; the rescheduled Macy&rsquo;s parade, Saturday 28 November 08:30 ET.</div>
+  <div class="footer"><div class="line1">Every story happened, or was first reported, on <b>Thursday 26 November 2026</b>. <b>REPORTED</b> means officials or wires state it. Times are WIB unless noted. Reads at three sizes.</div><div class="line2">Sources: Reuters, AP, BBC, Al Jazeera, CNN, ESA, Sky News, Bank of Korea. Original drawings. The Nasdaq fell 2.5% at the close, not 4%.</div></div>
+</div>
+</body>
+</html>
